@@ -1,0 +1,70 @@
+package org.example;
+
+/**
+ * BAD EXAMPLE - Violates multiple rules intentionally for testing
+ * Expected violations:
+ * - Method length > 10 lines
+ * - Cyclomatic complexity > 3
+ * - Cognitive complexity > 3
+ * - Nesting depth > 1
+ * - Magic numbers
+ * - Law of Demeter (train wreck)
+ * - More than 3 parameters
+ * - No final parameters
+ */
+public class BadExample {
+
+    private int health;
+
+    public BadExample(int health) {
+        this.health = health;
+    }
+
+    // Violates: method length, complexity, nesting, magic numbers, parameter count
+    public void complexMethod(String name, int level, double multiplier, boolean flag) {
+        int damage = 10; // magic number
+
+        if (level > 5) {
+            if (flag) {
+                if (health > 100) {
+                    damage = 20; // nested too deep
+                } else {
+                    damage = 15;
+                }
+            } else {
+                damage = 12;
+            }
+        } else if (level > 3) {
+            damage = 8;
+        } else {
+            damage = 5;
+        }
+
+        health = health - (int)(damage * multiplier);
+    }
+
+    // Violates: Law of Demeter (train wreck)
+    public void trainWreck(BadExample other) {
+        int otherHealth = other.getInnerObject().getHealth().intValue();
+        health = otherHealth;
+    }
+
+    private InnerObject getInnerObject() {
+        return new InnerObject();
+    }
+
+    // Setter instead of behavioral method
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    private static class InnerObject {
+        public Integer getHealth() {
+            return 100;
+        }
+    }
+}

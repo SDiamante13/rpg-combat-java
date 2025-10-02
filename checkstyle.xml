@@ -1,0 +1,182 @@
+<?xml version="1.0"?>
+<!DOCTYPE module PUBLIC
+        "-//Checkstyle//DTD Checkstyle Configuration 1.3//EN"
+        "https://checkstyle.org/dtds/configuration_1_3.dtd">
+
+<!--
+    Extreme Checkstyle Configuration for XP/TDD/Clean Code
+    - Max method length: 10 lines
+    - Max class/file length: 100 lines
+    - Max parameters: 3
+    - Max cyclomatic complexity: 3
+    - Max nesting depth: 1
+    - No comments allowed (except suppression comments)
+-->
+
+<module name="Checker">
+    <property name="charset" value="UTF-8"/>
+    <property name="severity" value="warning"/>
+    <property name="fileExtensions" value="java"/>
+
+    <!-- File length checks -->
+    <module name="FileLength">
+        <property name="max" value="100"/>
+        <property name="fileExtensions" value="java"/>
+    </module>
+
+    <!-- Disallow tabs -->
+    <module name="FileTabCharacter">
+        <property name="eachLine" value="true"/>
+    </module>
+
+    <module name="TreeWalker">
+        <!-- Size Violations -->
+        <module name="MethodLength">
+            <property name="max" value="10"/>
+            <property name="countEmpty" value="false"/>
+        </module>
+
+        <module name="ParameterNumber">
+            <property name="max" value="3"/>
+            <property name="tokens" value="METHOD_DEF, CTOR_DEF"/>
+        </module>
+
+        <!-- Complexity Metrics -->
+        <module name="CyclomaticComplexity">
+            <property name="max" value="3"/>
+            <property name="switchBlockAsSingleDecisionPoint" value="true"/>
+        </module>
+
+        <!-- Nesting Depth -->
+        <module name="NestedIfDepth">
+            <property name="max" value="1"/>
+        </module>
+
+        <module name="NestedForDepth">
+            <property name="max" value="1"/>
+        </module>
+
+        <module name="NestedTryDepth">
+            <property name="max" value="1"/>
+        </module>
+
+        <!-- Magic Numbers -->
+        <module name="MagicNumber">
+            <property name="ignoreNumbers" value="-1, 0, 1"/>
+            <property name="ignoreHashCodeMethod" value="true"/>
+            <property name="ignoreAnnotation" value="true"/>
+            <property name="ignoreFieldDeclaration" value="false"/>
+        </module>
+
+        <!-- Naming Conventions -->
+        <module name="TypeName">
+            <property name="format" value="^[A-Z][a-zA-Z0-9]*$"/>
+        </module>
+
+        <module name="MethodName">
+            <property name="format" value="^[a-z][a-zA-Z0-9]*$"/>
+        </module>
+
+        <module name="ParameterName">
+            <property name="format" value="^[a-z][a-zA-Z0-9]*$"/>
+        </module>
+
+        <module name="LocalVariableName">
+            <property name="format" value="^[a-z][a-zA-Z0-9]*$"/>
+        </module>
+
+        <module name="MemberName">
+            <property name="format" value="^[a-z][a-zA-Z0-9]*$"/>
+        </module>
+
+        <module name="ConstantName">
+            <property name="format" value="^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"/>
+        </module>
+
+        <module name="PackageName">
+            <property name="format" value="^[a-z]+(\.[a-z][a-z0-9]*)*$"/>
+        </module>
+
+        <!-- Whitespace -->
+        <module name="WhitespaceAround">
+            <property name="allowEmptyConstructors" value="true"/>
+            <property name="allowEmptyMethods" value="true"/>
+            <property name="allowEmptyTypes" value="true"/>
+            <property name="allowEmptyLoops" value="true"/>
+        </module>
+
+        <module name="WhitespaceAfter">
+            <property name="tokens" value="COMMA, SEMI"/>
+        </module>
+
+        <!-- Coding Practices -->
+        <module name="EmptyBlock">
+            <property name="option" value="text"/>
+        </module>
+
+        <module name="NeedBraces">
+            <property name="tokens" value="LITERAL_DO, LITERAL_ELSE, LITERAL_FOR, LITERAL_IF, LITERAL_WHILE"/>
+        </module>
+
+        <module name="SimplifyBooleanExpression"/>
+        <module name="SimplifyBooleanReturn"/>
+
+        <module name="EqualsHashCode"/>
+
+        <!-- Avoid nested assignments -->
+        <module name="InnerAssignment"/>
+
+        <!-- One statement per line -->
+        <module name="OneStatementPerLine"/>
+
+        <!-- Modifiers in proper order -->
+        <module name="ModifierOrder"/>
+
+        <!-- Avoid redundant modifiers -->
+        <module name="RedundantModifier"/>
+
+        <!-- Avoid empty statements -->
+        <module name="EmptyStatement"/>
+
+        <!-- Final parameters (immutability preference) -->
+        <module name="FinalParameters">
+            <property name="tokens" value="METHOD_DEF, CTOR_DEF"/>
+        </module>
+
+        <!-- Require final local variables (strong immutability) -->
+        <module name="FinalLocalVariable">
+            <property name="tokens" value="VARIABLE_DEF, PARAMETER_DEF"/>
+        </module>
+
+        <!-- No C-style array declarations -->
+        <module name="ArrayTypeStyle"/>
+
+        <!-- Proper indentation -->
+        <module name="Indentation">
+            <property name="basicOffset" value="4"/>
+            <property name="braceAdjustment" value="0"/>
+            <property name="caseIndent" value="4"/>
+            <property name="throwsIndent" value="4"/>
+            <property name="lineWrappingIndentation" value="4"/>
+            <property name="arrayInitIndent" value="4"/>
+        </module>
+
+        <!-- No trailing whitespace -->
+        <module name="Regexp">
+            <property name="format" value="[ \t]+$"/>
+            <property name="illegalPattern" value="true"/>
+            <property name="message" value="Trailing whitespace"/>
+        </module>
+
+        <!-- Enforce proper exception handling -->
+        <module name="IllegalCatch">
+            <property name="illegalClassNames" value="java.lang.Exception, java.lang.Throwable, java.lang.RuntimeException"/>
+        </module>
+
+        <!-- TODO comments are warnings -->
+        <module name="TodoComment">
+            <property name="format" value="TODO"/>
+            <property name="severity" value="warning"/>
+        </module>
+    </module>
+</module>
