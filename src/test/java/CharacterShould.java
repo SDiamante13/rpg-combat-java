@@ -31,5 +31,12 @@ public class CharacterShould {
         assertThat(character.isAlive()).isTrue();
     }
 
-    // [TEST] Be dead when health reaches zero
+    @Test
+    void beDeadWhenHealthReachesZero() {
+        final Character character = new Character();
+
+        character.receiveDamage(1000);
+
+        assertThat(character.isAlive()).isFalse();
+    }
 }
