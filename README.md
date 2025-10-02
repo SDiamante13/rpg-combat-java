@@ -1,73 +1,89 @@
-# RPG Combat
+# RPG Combat Java
 
-This Kata that has you building simple combat rules as for a role-playing game (RPG). The domain doesn't include a map or any other character skills apart from their ability to damage and heal one another.
+Extreme TDD/XP project with strict static analysis enforcement.
 
-The problem is broken down into several user stories to help you to focus on doing one thing at a time. Complete one user story before starting on the next one. Be sure to work on the problem in small steps and pay close attention to the design of both the code and the automated tests in every step.
+## First-Time Setup (One Command)
 
-## Damage and Health
+```bash
+./setup-hooks.sh
+```
 
-1. All Characters, when created, have:
-    * Health, starting at 1000
-    * May be Alive or Dead, starting Alive
+Done! Git hooks are now active and will enforce quality standards automatically.
 
-2. Characters can Deal Damage to Characters:
-    * Damage is subtracted from Health
-    * When damage received exceeds current Health, Health becomes 0 and the character dies
+## Development Workflow
 
-3. A Character cannot Deal Damage to itself
+```bash
+# 1. RED: Write a failing test
+mvn test
 
-4. A Character can Heal themselves:
-    * Dead characters cannot heal
+# 2. GREEN: Write minimal code to pass
+mvn test
 
-## Levels
+# 3. REFACTOR & COMMIT
+git add .
+git commit -m "Add feature X"
+# ⚡ Static analysis runs automatically
+# ❌ Commit blocked if violations found
 
-1. All characters have a Level, starting at 1
+# 4. PUSH when ready
+git push
+# ⚡ All tests run automatically
+# ❌ Push blocked if tests fail
+```
 
-2. A Character cannot have a health above 1000 until they reach level 6, when the maximum increases to 1500
+## Standards Enforced
 
-3. When dealing damage:
-    * If the target is 5 or more Levels above the attacker, Damage is reduced by 50%
-    * If the target is 5 or more Levels below the attacker, Damage is increased by 50%
+| Standard | Limit |
+|----------|-------|
+| Method length | **10 lines** |
+| Class length | **100 lines** |
+| Parameters | **3 max** |
+| Cyclomatic complexity | **≤ 3** |
+| Cognitive complexity | **≤ 3** |
+| Nesting depth | **≤ 1** |
+| Magic numbers | **Not allowed** |
+| Law of Demeter | **Enforced** |
 
-## Factions
+## Automated Quality Gates
 
-1. Characters may belong to one or more Factions:
-    * Newly created Characters belong to no Faction
-    * A Character may Join or Leave one or more Factions
+**Pre-commit (automatic):**
+- Checkstyle validates code metrics
+- PMD checks complexity & Law of Demeter
+- Commit blocked if violations exist
 
-2. Players belonging to the same Faction are considered Allies:
-    * Allies cannot Deal Damage to one another
-    * Allies can Heal one another and non-allies cannot
+**Pre-push (automatic):**
+- All tests must pass
+- Full compilation with Error Prone + NullAway
+- Push blocked if tests fail
 
-## Magical objects
+**⚠️ IMPORTANT:**
+- Hooks **cannot** be bypassed
+- Modifying `checkstyle.xml`, `pmd-ruleset.xml`, or static analysis config in `pom.xml` requires **explicit developer approval**
+- Quality standards are **non-negotiable**
 
-1. As well as Characters there are also Magical Objects:
-    * Magical Objects have Health
-    * The maximum amount of Health is fixed at the time the object is created
-    * When reduced to 0 Health, Magical Objects are Destroyed
-    * Magical Objects cannot be Healed by Characters
-    * Magical Objects do not belong to Factions; they are neutral
+## Manual Commands
 
-2. Characters can gain health from a Healing Magical Object:
-    * Characters can gain any amount of health from the Object, up to its maximum and theirs
-    * Healing Magical Objects cannot deal Damage
+```bash
+# Run static analysis only
+mvn checkstyle:check pmd:check
 
-3. Characters can deal Damage by using a Magical Weapon:
-    * These Magical Objects deal a fixed amount of damage when they are used
-    * The amount of damage is fixed at the time the weapon is created
-    * Every time the weapon is used, the Health is reduced by 1
-    * Magical Weapons cannot give Health to a Character
+# Run tests only
+mvn test
 
-## Changing level
+# Full build
+mvn clean compile
+```
 
-1. Level 1 Characters that survive 1000 damage points gain a level:
-    * This may be counted over several battles
-    * A character cannot gain a level while receiving damage, it happens directly afterwards (if the player is still alive)
-    * Level 2 Characters need to survive an additional 2000 damage points to gain a level, Level 3 Characters need to survive an additional 3000, and so on
+## Documentation
 
-2. Level 1 Characters that have ever been part of 3 distinct factions gain a level:
-    * Level 2 Characters need to join an additional 3 distinct factions to gain a level, Level 3 Characters need to join an additional 3, and so on
+- **[CLAUDE.md](CLAUDE.md)** - Coding standards, TDD philosophy, examples
+- **[STATIC_ANALYSIS.md](STATIC_ANALYSIS.md)** - Tool configuration details
+- **[KATA.md](KATA.md)** - RPG Combat Kata requirements and user stories
 
-3. The maximum Level for Characters is 10
+---
 
-4. Characters cannot lose a level they have gained
+## Requirements
+
+- **Java 23**
+- **Maven 3.6+**
+- **Git**

@@ -5,6 +5,11 @@
 
 <!--
     Extreme Checkstyle Configuration for XP/TDD/Clean Code
+
+    ⚠️  DO NOT MODIFY WITHOUT EXPLICIT TEAM APPROVAL
+    ⚠️  These rules enforce project standards and cannot be relaxed
+
+    Standards enforced:
     - Max method length: 10 lines
     - Max class/file length: 100 lines
     - Max parameters: 3

@@ -1,0 +1,26 @@
+#!/bin/sh
+#
+# Pre-push hook: Run all tests and full compilation
+# Ensures tests pass and Error Prone checks succeed before pushing
+#
+# ⚠️  BYPASSING THIS HOOK IS NOT ALLOWED
+# ⚠️  All tests must pass before pushing
+
+echo "🧪 Running all tests and compilation checks..."
+
+# Run tests and compile (includes Error Prone)
+mvn clean test
+
+RESULT=$?
+
+if [ $RESULT -ne 0 ]; then
+    echo ""
+    echo "❌ Tests failed or compilation errors detected!"
+    echo ""
+    echo "⚠️  Fix issues before pushing."
+    echo "⚠️  Bypassing this hook is not permitted."
+    exit 1
+fi
+
+echo "✅ All tests passed and code compiled successfully!"
+exit 0

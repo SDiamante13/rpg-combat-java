@@ -70,25 +70,31 @@ See `STATIC_ANALYSIS.md` for detailed tool configuration.
 
 ---
 
-## Workflow
+## Workflow (TDD Cycle)
 
-### Before Writing Code
-1. Write a failing test (RED)
-2. Run test suite to confirm failure
-3. Write minimal code to pass (GREEN)
-4. Run test suite to confirm pass
-5. Refactor if needed
-6. Commit
+### RED → GREEN → REFACTOR → COMMIT
 
-### Code Review Checklist
-- [ ] All tests pass
-- [ ] No static analysis violations
-- [ ] Methods ≤ 10 lines
-- [ ] Complexity ≤ 3
-- [ ] No setters (use behavioral methods)
-- [ ] No magic numbers
-- [ ] Descriptive names
-- [ ] Committed with test
+1. **RED:** Write a failing test
+2. **GREEN:** Write minimal code to pass
+3. **REFACTOR:** Clean up code while keeping tests green
+4. **COMMIT:** Git hooks automatically enforce quality
+
+### Automated Quality Gates
+
+**On `git commit`:**
+- ✅ Checkstyle validates code style & metrics
+- ✅ PMD checks cognitive complexity & Law of Demeter
+- ❌ Commit blocked if violations found
+
+**On `git push`:**
+- ✅ All tests must pass
+- ✅ Full compilation with Error Prone + NullAway
+- ❌ Push blocked if tests fail or compilation errors
+
+**⚠️ Non-Negotiable:**
+- Hooks cannot be bypassed
+- Quality standards are mandatory
+- Fix violations, don't skip checks
 
 ---
 

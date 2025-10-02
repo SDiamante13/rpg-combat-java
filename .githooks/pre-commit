@@ -1,0 +1,26 @@
+#!/bin/sh
+#
+# Pre-commit hook: Run static analysis checks
+# Enforces Checkstyle and PMD rules before allowing commits
+#
+# ⚠️  BYPASSING THIS HOOK IS NOT ALLOWED
+# ⚠️  Fix violations instead of using --no-verify
+
+echo "🔍 Running static analysis checks..."
+
+# Run Checkstyle and PMD
+mvn checkstyle:check pmd:check -q
+
+RESULT=$?
+
+if [ $RESULT -ne 0 ]; then
+    echo ""
+    echo "❌ Static analysis failed!"
+    echo ""
+    echo "⚠️  Fix violations before committing."
+    echo "⚠️  Bypassing this hook is not permitted."
+    exit 1
+fi
+
+echo "✅ Static analysis passed!"
+exit 0
