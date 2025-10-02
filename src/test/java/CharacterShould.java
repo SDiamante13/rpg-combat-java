@@ -15,7 +15,15 @@ public class CharacterShould {
         assertThat(character.health()).isEqualTo(initialHealth - 100);
     }
 
-    // [TEST] Not reduce health below zero
+    @Test
+    void notReduceHealthBelowZero() {
+        final Character character = new Character();
+
+        character.receiveDamage(2000);
+
+        assertThat(character.health()).isEqualTo(0);
+    }
+
     // [TEST] Be alive when health is above zero
     // [TEST] Be dead when health reaches zero
 }

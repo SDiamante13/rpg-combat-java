@@ -13,6 +13,6 @@ public class Character {
     }
 
     public void receiveDamage(final int damage) {
-        this.health = this.health - damage;
+        this.health = Math.max(0, this.health - damage);
     }
 }
