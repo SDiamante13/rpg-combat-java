@@ -27,16 +27,11 @@ public class CharacterShould {
     }
 
     @Test
-    void beAliveWhenHealthIsAboveZero() {
-        final Character character = new Character();
-
-        assertThat(character.isAlive()).isTrue();
-    }
-
-    @Test
     void beDeadWhenHealthReachesZero() {
         final Character attacker = new Character();
         final Character target = new Character();
+
+        assertThat(target.isAlive()).isTrue();
 
         target.receiveDamage(attacker, 1000);
 
@@ -57,6 +52,7 @@ public class CharacterShould {
     void healItselfWhenAlive() {
         final Character attacker = new Character();
         final Character character = new Character();
+
         character.receiveDamage(attacker, 200);
 
         character.heal(100);
@@ -68,8 +64,8 @@ public class CharacterShould {
     void notHealItselfWhenDead() {
         final Character attacker = new Character();
         final Character character = new Character();
-        character.receiveDamage(attacker, 1000);
 
+        character.receiveDamage(attacker, 1000);
         character.heal(100);
 
         assertThat(character.health()).isEqualTo(0);
@@ -79,8 +75,8 @@ public class CharacterShould {
     void notHealAboveMaximumHealth() {
         final Character attacker = new Character();
         final Character character = new Character();
-        character.receiveDamage(attacker, 100);
 
+        character.receiveDamage(attacker, 100);
         character.heal(200);
 
         assertThat(character.health()).isEqualTo(1000);
