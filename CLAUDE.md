@@ -81,6 +81,12 @@ See `STATIC_ANALYSIS.md` for detailed tool configuration.
 
 ### Automated Quality Gates
 
+**⚠️ FIRST TIME SETUP REQUIRED:**
+```bash
+./setup-hooks.sh
+```
+Run this once after cloning. Hooks will not work without this step.
+
 **On `git commit`:**
 - ✅ Checkstyle validates code style & metrics
 - ✅ PMD checks cognitive complexity & Law of Demeter
