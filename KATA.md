@@ -6,18 +6,18 @@ The problem is broken down into several user stories to help you to focus on doi
 
 ## Damage and Health
 
-1. All Characters, when created, have:
-    * Health, starting at 1000
-    * May be Alive or Dead, starting Alive
+1. ~~All Characters, when created, have:~~
+    * ~~Health, starting at 1000~~
+    * ~~May be Alive or Dead, starting Alive~~
 
-2. Characters can Deal Damage to Characters:
-    * Damage is subtracted from Health
-    * When damage received exceeds current Health, Health becomes 0 and the character dies
+2. ~~Characters can Deal Damage to Characters:~~
+    * ~~Damage is subtracted from Health~~
+    * ~~When damage received exceeds current Health, Health becomes 0 and the character dies~~
 
-3. A Character cannot Deal Damage to itself
+3. ~~A Character cannot Deal Damage to itself~~
 
-4. A Character can Heal themselves:
-    * Dead characters cannot heal
+4. ~~A Character can Heal themselves:~~
+    * ~~Dead characters cannot heal~~
 
 ## Levels
 

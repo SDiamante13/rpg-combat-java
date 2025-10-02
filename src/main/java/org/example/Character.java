@@ -12,11 +12,21 @@ public class Character {
         return this.health;
     }
 
-    public void receiveDamage(final int damage) {
+    public void receiveDamage(final Character attacker, final int damage) {
+        if (attacker == this) {
+            return;
+        }
         this.health = Math.max(0, this.health - damage);
     }
 
     public boolean isAlive() {
         return this.health > 0;
+    }
+
+    public void heal(final int amount) {
+        if (!this.isAlive()) {
+            return;
+        }
+        this.health = Math.min(STARTING_HEALTH, this.health + amount);
     }
 }
