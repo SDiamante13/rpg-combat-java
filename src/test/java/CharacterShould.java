@@ -24,6 +24,12 @@ public class CharacterShould {
         assertThat(character.health()).isEqualTo(0);
     }
 
-    // [TEST] Be alive when health is above zero
+    @Test
+    void beAliveWhenHealthIsAboveZero() {
+        final Character character = new Character();
+
+        assertThat(character.isAlive()).isTrue();
+    }
+
     // [TEST] Be dead when health reaches zero
 }

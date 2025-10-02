@@ -15,4 +15,8 @@ public class Character {
     public void receiveDamage(final int damage) {
         this.health = Math.max(0, this.health - damage);
     }
+
+    public boolean isAlive() {
+        return this.health > 0;
+    }
 }
